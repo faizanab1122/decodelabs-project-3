@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Started Free | HubSpot</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --bg:        #f5f5f5;
+      --surface:   #ffffff;
+      --border:    #e0e0e0;
+      --text:      #1a1a1a;
+      --mute:      #6b6b6b;
+      --orange:    #ff7a59;
+      --orange-dk: #e8693c;
+      --teal:      #00bda5;
+      --shadow:    rgba(0,0,0,0.07);
+    }
+
+    body.is-dark {
+      --bg:      #0f1117;
+      --surface: #1a1d27;
+      --border:  #2e3142;
+      --text:    #e8e6e1;
+      --mute:    #8b8a92;
+      --shadow:  rgba(0,0,0,0.3);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background 0.4s, color 0.4s;
+      font-size: 18px;
+    }
+
+    /* ── NAVBAR ── */
+    .top-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, border-color 0.4s;
+    }
+
+    .hs-logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    .hs-logo i { margin-right: 6px; }
+
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+
+    .dark-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--mute);
+    }
+
+    .toggle-track {
+      position: relative;
+      width: 40px; height: 22px;
+      background: var(--border);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.35s;
+    }
+
+    body.is-dark .toggle-track { background: var(--orange); }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 16px; height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    body.is-dark .toggle-thumb { transform: translateX(18px); }
+
+    .nav-link-btn {
+      font-size: 14px;
+      color: var(--mute);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link-btn:hover { color: var(--orange); text-decoration: none; }
+
+    /* ── TWO COLUMN LAYOUT ── */
+    .page-wrap {
+      display: flex;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* left panel — benefits */
+    .left-panel {
+      flex: 1;
+      background: linear-gradient(145deg, #1b3a2f 0%, #2d6a4f 60%, #40916c 100%);
+      padding: 60px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    @media (max-width: 768px) { .left-panel { display: none; } }
+
+    .left-panel h2 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .left-panel p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .benefit-icon {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      color: #b7e4c7;
+    }
+
+    .benefit-text strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 3px;
+    }
+
+    .benefit-text span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .trust-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 36px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* right panel — form */
+    .right-panel {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      min-width: 0;
+    }
+
+    /* ── REGISTER CARD ── */
+    .register-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 44px 40px;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 0 4px 24px var(--shadow);
+      transition: background 0.4s, border-color 0.4s;
+    }
+
+    .card-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .card-subtitle {
+      font-size: 14px;
+      color: var(--mute);
+      margin-bottom: 28px;
+    }
+
+    /* ── SOCIAL BUTTONS ── */
+    .social-btn {
+      width: 100%;
+      padding: 11px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      transition: border-color 0.2s, background 0.4s, color 0.4s;
+      text-decoration: none;
+    }
+
+    .social-btn:hover { border-color: var(--orange); color: var(--text); text-decoration: none; }
+    .social-btn img { width: 20px; height: 20px; }
+
+    /* ── DIVIDER ── */
+    .or-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .or-divider hr { flex: 1; border: none; border-top: 1px solid var(--border); }
+    .or-divider span { font-size: 13px; color: var(--mute); white-space: nowrap; }
+
+    /* ── FORM ── */
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 480px) { .form-row-2 { grid-template-columns: 1fr; } }
+
+    .f-group { margin-bottom: 14px; }
+
+    .f-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .f-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      background: var(--surface);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.25s, background 0.4s, color 0.4s;
+    }
+
+    .f-input:focus { border-color: var(--orange); }
+    .f-input.is-error { border-color: #e53e3e; }
+
+    .input-wrap { position: relative; }
+
+    .eye-toggle {
+      position: absolute;
+      right: 12px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      cursor: pointer; color: var(--mute);
+      font-size: 14px; padding: 0;
+      transition: color 0.2s;
+    }
+
+    .eye-toggle:hover { color: var(--orange); }
+
+    /* password strength bar */
+    .strength-wrap { margin-top: 6px; }
+
+    .strength-bar {
+      height: 4px;
+      border-radius: 999px;
+      background: var(--border);
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .strength-fill {
+      height: 100%;
+      border-radius: 999px;
+      width: 0%;
+      transition: width 0.3s, background 0.3s;
+    }
+
+    .strength-label { font-size: 12px; color: var(--mute); }
+
+    /* ── ERROR ── */
+    .form-error-msg {
+      display: none;
+      background: #fff5f5;
+      border: 1px solid #fed7d7;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: #e53e3e;
+      margin-bottom: 14px;
+      align-items: center;
+      gap: 8px;
+    }
+
+    body.is-dark .form-error-msg { background: #2d1515; border-color: #742a2a; color: #fc8181; }
+    .form-error-msg.is-visible { display: flex; }
+
+    /* ── SUBMIT ── */
+    .submit-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .submit-btn:hover { background: var(--orange-dk); transform: translateY(-1px); }
+    .submit-btn:active { transform: translateY(0); }
+    .submit-btn.is-loading { opacity: 0.75; pointer-events: none; }
+
+    .terms-note {
+      font-size: 12px;
+      color: var(--mute);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    .terms-note a { color: var(--orange); text-decoration: none; }
+    .terms-note a:hover { text-decoration: underline; }
+
+    /* ── BOTTOM LINK ── */
+    .bottom-link {
+      text-align: center;
+      font-size: 14px;
+      color: var(--mute);
+      margin-top: 20px;
+    }
+
+    .bottom-link a {
+      color: var(--orange);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .bottom-link a:hover { text-decoration: underline; }
+
+    /* ── SUCCESS STATE ── */
+    .reg-success {
+      display: none;
+      text-align: center;
+      padding: 16px 0;
+      animation: fadeUp 0.3s ease;
+    }
+
+    .reg-success.is-visible { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .success-icon  { font-size: 3rem; margin-bottom: 14px; }
+    .success-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .success-msg   { font-size: 14px; color: var(--mute); line-height: 1.7; margin-bottom: 20px; }
+
+    .back-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      margin-right: 8px;
+    }
+
+    .back-btn:hover { border-color: var(--orange); color: var(--orange); text-decoration: none; }
+
+    .primary-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: var(--orange);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .primary-btn:hover { background: var(--orange-dk); color: #fff; text-decoration: none; }
+
+    /* ── PAGE FOOTER ── */
+    .page-footer {
+      text-align: center;
+      padding: 18px 24px;
+      font-size: 13px;
+      color: var(--mute);
+      border-top: 1px solid var(--border);
+      transition: border-color 0.4s;
+    }
+
+    .page-footer a { color: var(--mute); text-decoration: none; margin: 0 8px; }
+    .page-footer a:hover { color: var(--orange); }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div class="top-nav">
+    <a class="hs-logo" href="index.html">
+      <i class="fa-solid fa-gear"></i>HubSpot
+    </a>
+    <div class="nav-right">
+      <div class="dark-wrap">
+        <span id="js-theme-label">Light</span>
+        <div class="toggle-track" id="js-dark-toggle">
+          <div class="toggle-thumb"></div>
+        </div>
+      </div>
+      <a href="index.html" class="nav-link-btn">← Back to Home</a>
+      <a href="login.html" class="nav-link-btn">Log in</a>
+    </div>
+  </div>
+
+  <!-- PAGE -->
+  <div class="page-wrap">
+
+    <!-- LEFT — benefits panel -->
+    <div class="left-panel">
+      <h2>Start growing with HubSpot — for free</h2>
+      <p>Join over 205,000 businesses that use HubSpot to attract, engage, and delight their customers.</p>
+
+      <div class="benefit-item">
+        <div class="benefit-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div class="benefit-text">
+          <strong>Free forever, no credit card</strong>
+          <span>Access core CRM, marketing, and sales tools at zero cost.</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon"><i class="fa-solid fa-plug"></i></div>
+        <div class="benefit-text">
+          <strong>1,600+ integrations</strong>
+          <span>Connect Gmail, Shopify, Slack, Zapier, and more in minutes.</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon"><i class="fa-solid fa-robot"></i></div>
+        <div class="benefit-text">
+          <strong>AI-powered tools</strong>
+          <span>Generate leads, write content, and automate tasks with AI.</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="benefit-icon"><i class="fa-solid fa-headset"></i></div>
+        <div class="benefit-text">
+          <strong>World-class support</strong>
+          <span>Academy, community, and 24/7 customer support included.</span>
+        </div>
+      </div>
+
+      <div class="trust-note">
+        <i class="fa-solid fa-shield-halved"></i>
+        Your data is safe. We never sell it to third parties.
+      </div>
+    </div>
+
+    <!-- RIGHT — form panel -->
+    <div class="right-panel">
+      <div class="register-card">
+
+        <h1 class="card-title">Create your free account</h1>
+        <p class="card-subtitle">No credit card required. Set up in minutes.</p>
+
+        <!-- SOCIAL -->
+        <a href="#" class="social-btn">
+          <img src="https://www.google.com/favicon.ico" alt="Google">
+          Sign up with Google
+        </a>
+        <a href="#" class="social-btn">
+          <i class="fa-brands fa-microsoft" style="color:#00a4ef; font-size:18px;"></i>
+          Sign up with Microsoft
+        </a>
+
+        <!-- DIVIDER -->
+        <div class="or-divider">
+          <hr/><span>or sign up with email</span><hr/>
+        </div>
+
+        <!-- ERROR -->
+        <div class="form-error-msg" id="js-reg-error">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <span id="js-error-text">Please fill in all fields.</span>
+        </div>
+
+        <!-- FORM -->
+        <div id="js-reg-form">
+          <div class="form-row-2">
+            <div class="f-group">
+              <label class="f-label" for="js-fname">First Name</label>
+              <input class="f-input" type="text" id="js-fname" placeholder="e.g. Sara">
+            </div>
+            <div class="f-group">
+              <label class="f-label" for="js-lname">Last Name</label>
+              <input class="f-input" type="text" id="js-lname" placeholder="e.g. Ahmed">
+            </div>
+          </div>
+
+          <div class="f-group">
+            <label class="f-label" for="js-email">Work Email</label>
+            <input class="f-input" type="email" id="js-email" placeholder="you@company.com">
+          </div>
+
+          <div class="f-group">
+            <label class="f-label" for="js-password">Password</label>
+            <div class="input-wrap">
+              <input class="f-input" type="password" id="js-password"
+                placeholder="Create a password" style="padding-right:42px;">
+              <button class="eye-toggle" id="js-eye-toggle" type="button" title="Show / hide password">
+                <i class="fa-regular fa-eye" id="js-eye-icon"></i>
+              </button>
+            </div>
+            <!-- password strength bar — updates as you type -->
+            <div class="strength-wrap">
+              <div class="strength-bar">
+                <div class="strength-fill" id="js-strength-fill"></div>
+              </div>
+              <span class="strength-label" id="js-strength-label"></span>
+            </div>
+          </div>
+
+          <div class="f-group">
+            <label class="f-label" for="js-company">Company Name</label>
+            <input class="f-input" type="text" id="js-company" placeholder="e.g. DecodeLabs">
+          </div>
+
+          <div class="f-group">
+            <label class="f-label" for="js-size">Company Size</label>
+            <select class="f-input" id="js-size">
+              <option value="">Select company size</option>
+              <option>1–10 employees</option>
+              <option>11–50 employees</option>
+              <option>51–200 employees</option>
+              <option>200+ employees</option>
+            </select>
+          </div>
+
+          <button class="submit-btn" id="js-reg-btn">Get started free →</button>
+
+          <p class="terms-note">
+            By signing up, you agree to HubSpot's
+            <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+          </p>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="reg-success" id="js-reg-success">
+          <div class="success-icon">🎉</div>
+          <div class="success-title" id="js-success-name">Account created!</div>
+          <p class="success-msg">
+            Welcome to HubSpot, <strong id="js-welcome-name"></strong>!<br>
+            A confirmation email has been sent to <strong id="js-welcome-email"></strong>.<br>
+            You're all set to start growing.
+          </p>
+          <a href="login.html" class="primary-btn">Log in to your account →</a><br><br>
+          <a href="index.html" class="back-btn">← Back to Home</a>
+        </div>
+
+        <!-- BOTTOM LINK -->
+        <p class="bottom-link">
+          Already have an account? <a href="login.html">Log in</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-footer">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Legal Stuff</a>
+    <a href="#">Security</a>
+    <span style="margin-left:8px;">&copy; 2024 HubSpot, Inc.</span>
+  </div>
+
+  <!-- jQuery + Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+
+  <script>
+
+    /* ── DARK MODE TOGGLE ── */
+    let isDark = false;
+    const darkToggle = document.getElementById('js-dark-toggle');
+    const themeLabel = document.getElementById('js-theme-label');
+
+    darkToggle.addEventListener('click', function () {
+      isDark = !isDark;
+      document.body.classList.toggle('is-dark');
+      themeLabel.textContent = isDark ? 'Dark' : 'Light';
+    });
+
+    /* ── SHOW / HIDE PASSWORD ── */
+    const passwordInput = document.getElementById('js-password');
+    const eyeToggle     = document.getElementById('js-eye-toggle');
+    const eyeIcon       = document.getElementById('js-eye-icon');
+
+    eyeToggle.addEventListener('click', function () {
+      const isPass = passwordInput.type === 'password';
+      passwordInput.type = isPass ? 'text' : 'password';
+      eyeIcon.className  = isPass ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+    });
+
+    /* ── PASSWORD STRENGTH METER ──
+       Input:   user types in password field
+       Process: measure length and character variety
+       Output:  update strength bar width and label
+    ── */
+    const strengthFill  = document.getElementById('js-strength-fill');
+    const strengthLabel = document.getElementById('js-strength-label');
+
+    passwordInput.addEventListener('input', function () {
+      const val = passwordInput.value;
+      let score = 0;
+
+      if (val.length >= 6)  score++;
+      if (val.length >= 10) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[0-9]/.test(val)) score++;
+      if (/[^A-Za-z0-9]/.test(val)) score++;
+
+      const levels = [
+        { label: '',         color: 'transparent', width: '0%'   },
+        { label: 'Weak',     color: '#e53e3e',      width: '25%'  },
+        { label: 'Fair',     color: '#dd6b20',      width: '50%'  },
+        { label: 'Good',     color: '#d69e2e',      width: '75%'  },
+        { label: 'Strong',   color: '#38a169',      width: '90%'  },
+        { label: 'Very strong', color: '#00bda5',   width: '100%' },
+      ];
+
+      const level = levels[Math.min(score, 5)];
+      strengthFill.style.width      = level.width;
+      strengthFill.style.background = level.color;
+      strengthLabel.textContent     = val.length === 0 ? '' : level.label;
+      strengthLabel.style.color     = level.color;
+    });
+
+    /* ── REGISTER FORM SUBMIT ──
+       Input:   click Get started free
+       Process: validate all fields
+       Output:  error message OR success screen
+    ── */
+    const regBtn     = document.getElementById('js-reg-btn');
+    const regForm    = document.getElementById('js-reg-form');
+    const regSuccess = document.getElementById('js-reg-success');
+    const regError   = document.getElementById('js-reg-error');
+    const errorText  = document.getElementById('js-error-text');
+
+    function clearErrors() {
+      regError.classList.remove('is-visible');
+      regForm.querySelectorAll('.f-input').forEach(function (el) {
+        el.classList.remove('is-error');
+      });
+    }
+
+    function showError(msg, fieldId) {
+      errorText.textContent = msg;
+      regError.classList.add('is-visible');
+      if (fieldId) document.getElementById(fieldId).classList.add('is-error');
+    }
+
+    regBtn.addEventListener('click', function () {
+      clearErrors();
+
+      const fname   = document.getElementById('js-fname').value.trim();
+      const lname   = document.getElementById('js-lname').value.trim();
+      const email   = document.getElementById('js-email').value.trim();
+      const password= document.getElementById('js-password').value.trim();
+      const company = document.getElementById('js-company').value.trim();
+      const size    = document.getElementById('js-size').value;
+
+      if (!fname)   { showError('Please enter your first name.', 'js-fname');   return; }
+      if (!lname)   { showError('Please enter your last name.',  'js-lname');   return; }
+      if (!email)   { showError('Please enter your email address.', 'js-email'); return; }
+      if (!email.includes('@') || !email.includes('.')) {
+        showError('Please enter a valid email address.', 'js-email'); return;
+      }
+      if (!password) { showError('Please create a password.', 'js-password'); return; }
+      if (password.length < 6) {
+        showError('Password must be at least 6 characters.', 'js-password'); return;
+      }
+      if (!company) { showError('Please enter your company name.', 'js-company'); return; }
+      if (!size)    { showError('Please select your company size.', 'js-size');   return; }
+
+      // all valid — loading state
+      regBtn.textContent = 'Creating your account…';
+      regBtn.classList.add('is-loading');
+
+      setTimeout(function () {
+        document.getElementById('js-welcome-name').textContent  = fname;
+        document.getElementById('js-welcome-email').textContent = email;
+        regForm.style.display = 'none';
+        regSuccess.classList.add('is-visible');
+      }, 1400);
+    });
+
+  </script>
+
+</body>
+</html>

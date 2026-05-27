@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HubSpot | Project 3 </title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+  <div class="top-nav">
+    <div class="top-nav-left">
+
+      <!-- Language Selector — JS Feature: dynamically updates page language label -->
+      <select class="lang-select" id="js-lang-select">
+        <option value="en">English</option>
+        <option value="ur">Urdu</option>
+        <option value="hi">Hindi</option>
+        <option value="ar">Arabic</option>
+      </select>
+
+      <a href="https://help.hubspot.com/" target="_blank">
+        <i class="fa-solid fa-message"></i> Customer Support
+      </a>
+      <a href="https://offers.hubspot.com/contact-sales" target="_blank">
+        <i class="fa-solid fa-user"></i> Contact Sales
+      </a>
+    </div>
+
+    <div class="top-nav-right">
+      <!-- Dark Mode Toggle -->
+      <div class="dark-wrap">
+        <span id="js-theme-label">Light</span>
+        <div class="toggle-track" id="js-dark-toggle" title="Toggle dark mode">
+          <div class="toggle-thumb"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ② MAIN NAVBAR -->
+  <nav class="main-nav">
+
+    <!-- Logo — fixed: replaced placeholder <h1>head</h1> with real logo -->
+    <a class="hs-logo" href="#">
+      <span class="sprocket"><i class="fa-solid fa-gear"></i></span>
+      HubSpot
+    </a>
+
+    <!-- Hamburger for mobile -->
+    <button class="hamburger" id="js-hamburger">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Nav Links -->
+    <ul class="main-nav-links" id="js-nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Resources</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+
+    <!-- Right Buttons -->
+    <div class="main-nav-right">
+      <!-- Search icon -->
+      <button class="hs-btn" id="js-search-btn" title="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+
+      <!-- Login button — BUG FIX: works now because script is at bottom -->
+      <button class="hs-btn" id="js-loginBtn" >Log in</button>
+
+      <!-- Get started button -->
+      <button class="hs-btn hs-btn-primary" id="js-getStartedBtn" >Get started free</button>
+    </div>
+
+  </nav>
+
+  <!-- Search Bar — hidden by default, toggled by JS -->
+  <div id="js-search-bar" style="display:none; background:var(--surface); border-bottom:1px solid var(--border); padding:12px 24px; transition:background 0.4s;">
+    <div style="max-width:600px; margin:0 auto; display:flex; gap:10px;">
+      <input type="search" id="js-search-input" placeholder="Search HubSpot.com…"
+        style="flex:1; padding:10px 14px; border:1.5px solid var(--border); border-radius:6px; font-size:0.93rem; background:var(--surface); color:var(--text); outline:none;">
+      <button id="js-search-close" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:var(--mute);">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <p id="js-search-result" style="max-width:600px; margin:8px auto 0; font-size:0.82rem; color:var(--mute);"></p>
+  </div>
+
+
+  <!-- =====================================================
+       HERO / PAGE 1
+  ===================================================== -->
+  <div class="page1">
+    <div class="container">
+      <div class="wraper-1">
+        <div class="left-p1">
+          <p>HUBSPOT CUSTOMER PLATFORM</p>
+          <h1>Grow better with HubSpot</h1>
+          <p>Software that's powerful, not overpowering. Seamlessly connect your data, teams, and customers on one
+            AI-powered customer platform that grows with your business.</p>
+          <div class="hero-btns">
+            <button class="hs-btn hs-btn-primary" id="js-heroDemoBtn">Get a demo</button>
+            <button class="hs-btn" id="js-heroFreeBtn">Get started free</button>
+          </div>
+          <p>Get a demo of our premium software, or get started with free tools.</p>
+        </div>
+        <div class="right-p1">
+          <img src="assets/page1-img.webp" alt="HubSpot Platform" class="img-p1"
+            onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       INTERACTIVE FEATURES SECTION
+  ===================================================== -->
+  <hr class="js-section-divider">
+  <div class="container" style="padding-top:48px; padding-bottom:48px;">
+
+    <!-- ── FEATURE 1: HUB SEARCH FILTER ── -->
+    <div class="section-block">
+      <p class="feature-label">Feature 01 · Live DOM Filtering</p>
+      <h2 class="feature-title">Search HubSpot Products</h2>
+
+      <div class="search-row">
+        <input class="search-field" id="js-hub-search" type="text"
+          placeholder="Type a hub name e.g. Marketing, Sales, AI…" />
+        <button class="clear-btn" id="js-hub-clear">Clear</button>
+      </div>
+
+      <div class="hubs-grid" id="js-hubs-grid">
+        <!-- JS renders cards here -->
+      </div>
+    </div>
+
+
+    <!-- ── FEATURE 2: GET A DEMO FORM ── -->
+    <div class="section-block">
+      <p class="feature-label">Feature 02 · Dynamic Content Update</p>
+      <h2 class="feature-title">Get a Demo</h2>
+
+      <!-- FORM -->
+      <div id="js-demo-form">
+        <div class="form-row-2">
+          <div class="f-group">
+            <label class="f-label" for="js-fname">First Name</label>
+            <input class="f-input" type="text" id="js-fname" placeholder="e.g. Sara">
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="js-lname">Last Name</label>
+            <input class="f-input" type="text" id="js-lname" placeholder="e.g. Ahmed">
+          </div>
+        </div>
+        <div class="f-group">
+          <label class="f-label" for="js-email">Work Email</label>
+          <input class="f-input" type="email" id="js-email" placeholder="you@company.com">
+        </div>
+        <div class="form-row-2">
+          <div class="f-group">
+            <label class="f-label" for="js-company">Company Name</label>
+            <input class="f-input" type="text" id="js-company" placeholder="e.g. DecodeLabs">
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="js-size">Company Size</label>
+            <select class="f-select" id="js-size">
+              <option value="">Select size</option>
+              <option>1–10 employees</option>
+              <option>11–50 employees</option>
+              <option>51–200 employees</option>
+              <option>200+ employees</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-group">
+          <label class="f-label" for="js-hub-pick">Which Hub interests you?</label>
+          <select class="f-select" id="js-hub-pick">
+            <option value="">Select a hub</option>
+            <option>Marketing Hub</option>
+            <option>Sales Hub</option>
+            <option>Service Hub</option>
+            <option>Content Hub</option>
+            <option>Operations Hub</option>
+            <option>Commerce Hub</option>
+          </select>
+        </div>
+        <button class="submit-btn" id="js-demo-submit">Get a demo →</button>
+        <p class="form-error" id="js-form-error">Please fill in all fields before submitting.</p>
+      </div>
+
+      <!-- SUCCESS — hidden, shown by JS after submit -->
+      <div class="form-success" id="js-form-success">
+        <div class="success-icon">🎉</div>
+        <div class="success-title" id="js-success-name">Thanks!</div>
+        <div class="success-msg">
+          Our team will reach out to <strong id="js-success-email"></strong> shortly.<br>
+          We're excited to show you what HubSpot can do for your business.
+        </div>
+        <button class="hs-btn" id="js-form-reset" style="margin-top:20px;">Submit another request</button>
+      </div>
+    </div>
+
+
+    <!-- ── FEATURE 3: PRICING TOGGLE ── -->
+    <div class="section-block">
+      <p class="feature-label">Feature 03 · State Management</p>
+      <h2 class="feature-title">HubSpot Pricing Plans</h2>
+
+      <div class="pricing-toggle-row">
+        <span class="price-label is-active" id="js-lbl-monthly">Monthly</span>
+        <div class="price-track" id="js-price-toggle">
+          <div class="price-thumb" id="js-price-thumb"></div>
+        </div>
+        <span class="price-label" id="js-lbl-annual">
+          Annual <small style="color:var(--teal); font-size:0.72rem;">(save 25%)</small>
+        </span>
+      </div>
+
+      <div class="pricing-cards">
+        <div class="price-card">
+          <div class="price-tier">Free</div>
+          <div class="price-amount">$0<span>/mo</span></div>
+          <div class="price-desc">All the basics for your startup. Free forever, no credit card needed.</div>
+          <button class="hs-btn" style="width:100%;">Get started free</button>
+        </div>
+        <div class="price-card is-popular">
+          <span class="popular-tag">Most Popular</span>
+          <div class="price-tier">Starter</div>
+          <div class="price-amount" id="js-p-starter">$20<span>/mo</span></div>
+          <div class="price-desc">Essential marketing, sales, and service tools for growing teams.</div>
+          <button class="hs-btn hs-btn-primary" style="width:100%;">Get started</button>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Professional</div>
+          <div class="price-amount" id="js-p-pro">$890<span>/mo</span></div>
+          <div class="price-desc">Advanced features for teams ready to scale operations.</div>
+          <button class="hs-btn" style="width:100%;">Get started</button>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">Enterprise</div>
+          <div class="price-amount" id="js-p-ent">$3,600<span>/mo</span></div>
+          <div class="price-desc">Custom solutions for large businesses with complex needs.</div>
+          <button class="hs-btn" style="width:100%;">Contact sales</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── FEATURE 4: BLOG SAVE / BOOKMARK ── -->
+    <div class="section-block">
+      <p class="feature-label">Feature 04 · Event Listeners + classList</p>
+      <h2 class="feature-title">Popular Blog Posts</h2>
+
+      <div id="js-blog-list">
+        <!-- JS builds rows here -->
+      </div>
+
+      <p class="saved-counter" id="js-saved-count">
+        You have saved <span>0</span> post(s).
+      </p>
+    </div>
+
+
+    <!-- ── FEATURE 5: FAQ ACCORDION ── -->
+    <div class="section-block">
+      <p class="feature-label">Feature 05 · Accordion Toggle</p>
+      <h2 class="feature-title">Frequently Asked Questions</h2>
+
+      <div id="js-accordion">
+
+        <div class="acc-item">
+          <button class="acc-btn js-acc-btn">
+            What is HubSpot?
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              HubSpot is an AI-powered customer platform with all the software, integrations, and resources you need to
+              connect your marketing, sales, and customer service. It enables you to grow your business faster by
+              focusing on what matters most: your customers.
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-btn js-acc-btn">
+            What are the HubSpot Hubs?
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              HubSpot offers six hubs: <strong>Marketing Hub</strong> for lead generation,
+              <strong>Sales Hub</strong> for deal management, <strong>Service Hub</strong> for customer support,
+              <strong>Content Hub</strong> for AI content creation, <strong>Operations Hub</strong> for data management,
+              and <strong>Commerce Hub</strong> for billing and payments.
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-btn js-acc-btn">
+            Is there a free plan available?
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              Yes! HubSpot offers a permanently free plan with no credit card required. It includes core CRM features
+              and basic access to most hubs. You can upgrade to a paid plan anytime as your business grows.
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-btn js-acc-btn">
+            Does HubSpot integrate with other tools?
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              Absolutely — HubSpot connects with over 1,600 apps including Gmail, Shopify, Mailchimp, Zapier,
+              Google Ads, and Slack. All integrations are available through the HubSpot App Marketplace.
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-btn js-acc-btn">
+            How do I get started with HubSpot?
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-body-inner">
+              Sign up for free tools instantly, or book a demo with the HubSpot sales team to see premium features.
+              HubSpot Academy has certified 459K+ professionals and the blog gets 10M+ monthly visits to help you
+              learn and grow.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /container interactive features -->
+  <hr class="js-section-divider">
+
+
+  <!-- =====================================================
+       PAGE 2 — What is HubSpot
+  ===================================================== -->
+  <div class="page2">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center" style="gap:40px;">
+        <div style="flex:1; min-width:260px;">
+          <img src="assets/Homepage Video Thumbnail 1_2x-1.webp" alt="HubSpot video"
+            style="max-width:100%; border-radius:12px;" onerror="this.style.display='none'">
+        </div>
+        <div style="flex:1; min-width:260px;">
+          <h2 class="section-heading">What is HubSpot?</h2>
+          <p style="color:var(--mute); line-height:1.75; margin-bottom:12px;">
+            HubSpot is an AI-powered customer platform with all the software, integrations, and resources you need to
+            connect your marketing, sales, and customer service.
+          </p>
+          <p style="color:var(--mute); line-height:1.75; margin-bottom:20px;">
+            Get a demo to learn about our premium software, or get started with our full suite of free tools and upgrade
+            as you grow.
+          </p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="hs-btn hs-btn-primary">Get a demo</button>
+            <button class="hs-btn">Get started free</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       PAGE 4 — HubSpot Hubs Cards
+  ===================================================== -->
+  <div class="page4">
+    <div class="container">
+      <h2 class="section-heading" style="text-align:center; margin-bottom:32px;">
+        Your whole front office. One customer platform.
+      </h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px;">
+
+        <!-- each hub card -->
+        <div class="section-block" style="margin-bottom:0;">
+          <h4 style="font-weight:700; color:var(--text); margin-bottom:8px;">📣 Marketing Hub <sup>®</sup></h4>
+          <p style="color:var(--mute); font-size:0.85rem; margin-bottom:12px;">AI-powered marketing software that helps you generate leads and automate marketing.</p>
+          <hr style="border-color:var(--border); margin-bottom:12px;">
+          <strong style="font-size:0.8rem; color:var(--text);">Popular Features</strong>
+          <ul style="margin-top:8px; padding-left:0; list-style:none; font-size:0.82rem; color:var(--mute);">
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> AI-powered lead generation</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Marketing automation</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Analytics</li>
+          </ul>
+          <button class="hs-btn" style="width:100%; margin-top:14px;">Learn more</button>
+        </div>
+
+        <div class="section-block" style="margin-bottom:0;">
+          <h4 style="font-weight:700; color:var(--text); margin-bottom:8px;">💼 Sales Hub <sup>®</sup></h4>
+          <p style="color:var(--mute); font-size:0.85rem; margin-bottom:12px;">Easy-to-adopt sales software that leverages AI to build pipelines and close deals.</p>
+          <hr style="border-color:var(--border); margin-bottom:12px;">
+          <strong style="font-size:0.8rem; color:var(--text);">Popular Features</strong>
+          <ul style="margin-top:8px; padding-left:0; list-style:none; font-size:0.82rem; color:var(--mute);">
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Prospecting workspace</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Deal management</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Sales automation</li>
+          </ul>
+          <button class="hs-btn" style="width:100%; margin-top:14px;">Learn more</button>
+        </div>
+
+        <div class="section-block" style="margin-bottom:0;">
+          <h4 style="font-weight:700; color:var(--text); margin-bottom:8px;">🎧 Service Hub <sup>®</sup></h4>
+          <p style="color:var(--mute); font-size:0.85rem; margin-bottom:12px;">Customer service software powered by AI to scale support and drive retention.</p>
+          <hr style="border-color:var(--border); margin-bottom:12px;">
+          <strong style="font-size:0.8rem; color:var(--text);">Popular Features</strong>
+          <ul style="margin-top:8px; padding-left:0; list-style:none; font-size:0.82rem; color:var(--mute);">
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Omni-channel help desk</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> AI chatbot</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Customer success workspace</li>
+          </ul>
+          <button class="hs-btn" style="width:100%; margin-top:14px;">Learn more</button>
+        </div>
+
+        <div class="section-block" style="margin-bottom:0;">
+          <h4 style="font-weight:700; color:var(--text); margin-bottom:8px;">✍️ Content Hub ™</h4>
+          <p style="color:var(--mute); font-size:0.85rem; margin-bottom:12px;">All-in-one, AI-powered content marketing software that helps marketers create and manage content.</p>
+          <hr style="border-color:var(--border); margin-bottom:12px;">
+          <strong style="font-size:0.8rem; color:var(--text);">Popular Features</strong>
+          <ul style="margin-top:8px; padding-left:0; list-style:none; font-size:0.82rem; color:var(--mute);">
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Content remix</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Brand voice</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> AI-powered content creation</li>
+          </ul>
+          <button class="hs-btn" style="width:100%; margin-top:14px;">Learn more</button>
+        </div>
+
+        <div class="section-block" style="margin-bottom:0;">
+          <h4 style="font-weight:700; color:var(--text); margin-bottom:8px;">⚙️ Operations Hub <sup>®</sup></h4>
+          <p style="color:var(--mute); font-size:0.85rem; margin-bottom:12px;">Operations software that leverages AI to help you activate and manage your data.</p>
+          <hr style="border-color:var(--border); margin-bottom:12px;">
+          <strong style="font-size:0.8rem; color:var(--text);">Popular Features</strong>
+          <ul style="margin-top:8px; padding-left:0; list-style:none; font-size:0.82rem; color:var(--mute);">
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Data sync</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Programmable automation</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> AI-powered data quality</li>
+          </ul>
+          <button class="hs-btn" style="width:100%; margin-top:14px;">Learn more</button>
+        </div>
+
+        <div class="section-block" style="margin-bottom:0;">
+          <h4 style="font-weight:700; color:var(--text); margin-bottom:8px;">🛒 Commerce Hub ™</h4>
+          <p style="color:var(--mute); font-size:0.85rem; margin-bottom:12px;">B2B commerce software designed to help you collect payments and automate billing.</p>
+          <hr style="border-color:var(--border); margin-bottom:12px;">
+          <strong style="font-size:0.8rem; color:var(--text);">Popular Features</strong>
+          <ul style="margin-top:8px; padding-left:0; list-style:none; font-size:0.82rem; color:var(--mute);">
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Invoices &amp; subscriptions</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Quotes</li>
+            <li><i class="fa-solid fa-circle-check" style="color:#fa5700;"></i> Payment links</li>
+          </ul>
+          <button class="hs-btn" style="width:100%; margin-top:14px;">Learn more</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       FOOTER (original content kept)
+  ===================================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-list d-flex flex-wrap" style="gap:32px;">
+
+        <div style="flex:2; min-width:220px;">
+          <h6>Popular Features</h6>
+          <ul style="column-count:2; column-gap:16px;">
+            <li><a href="#">All Products and Features</a></li>
+            <li><a href="#">Free Meeting Scheduler App</a></li>
+            <li><a href="#">HubSpot AI Tools</a></li>
+            <li><a href="#">Email Tracking Software</a></li>
+            <li><a href="#">AI Content Writer</a></li>
+            <li><a href="#">AI Website Generator</a></li>
+            <li><a href="#">Email Marketing Software</a></li>
+            <li><a href="#">Lead Management Software</a></li>
+            <li><a href="#">AI Email Writer</a></li>
+            <li><a href="#">Free Website Builder</a></li>
+            <li><a href="#">Sales Email Templates</a></li>
+            <li><a href="#">Free Online Form Builder</a></li>
+            <li><a href="#">Free Chatbot Builder</a></li>
+            <li><a href="#">Free Live Chat Software</a></li>
+            <li><a href="#">Marketing Analytics</a></li>
+            <li><a href="#">Free Landing Page Builder</a></li>
+          </ul>
+        </div>
+
+        <div style="flex:1; min-width:140px;">
+          <h6>Free Tools</h6>
+          <ul>
+            <li><a href="#">AI Search Grader</a></li>
+            <li><a href="#">Website Grader</a></li>
+            <li><a href="#">Email Signature Generator</a></li>
+            <li><a href="#">Blog Ideas Generator</a></li>
+            <li><a href="#">Invoice Template Generator</a></li>
+            <li><a href="#">Campaign Assistant</a></li>
+          </ul>
+        </div>
+
+        <div style="flex:1; min-width:130px;">
+          <h6>Company</h6>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Management Team</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div style="flex:1; min-width:130px;">
+          <h6>Customers</h6>
+          <ul>
+            <li><a href="#">Customer Support</a></li>
+            <li><a href="#">Join a Local User Group</a></li>
+          </ul>
+          <h6 style="margin-top:16px;">Partners</h6>
+          <ul>
+            <li><a href="#">Solutions Partner Program</a></li>
+            <li><a href="#">App Partner Program</a></li>
+            <li><a href="#">HubSpot for Startups</a></li>
+            <li><a href="#">Affiliate Program</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="social" style="margin-top:28px;">
+        <ul style="display:flex; gap:18px; justify-content:center; list-style:none; padding:0;">
+          <li><a href="https://web.facebook.com/hubspot" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li><a href="https://www.instagram.com/hubspot/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="https://www.youtube.com/user/HubSpot" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+          <li><a href="https://x.com/HubSpot" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+          <li><a href="https://www.linkedin.com/company/hubspot" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+          <li><a href="https://www.tiktok.com/@hubspot" target="_blank"><i class="fa-brands fa-tiktok"></i></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <p>Copyright &copy; 2024 HubSpot, Inc. &nbsp;·&nbsp; Built for DecodeLabs Project 3 – Batch 2026</p>
+        <ul>
+          <li><a href="#">Legal Stuff</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">Website Accessibility</a></li>
+          <li><a href="#">Manage Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- jQuery + Bootstrap JS (original dependencies) -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+
+ <script src="script.js"></script>
+
+</body>
+</html>
